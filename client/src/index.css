@@ -343,7 +343,15 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 
 @media (max-width: 640px) {
   main > section { scroll-margin-top: 68px; }
-  .reveal { transition-duration: 760ms; }
+  .reveal { transition-duration: 960ms; }
+  .reveal.reveal-ready.reveal--up { transform: translate3d(0, 20px, 0) scale(0.994); }
+  .reveal.reveal-ready.reveal--down { transform: translate3d(0, -20px, 0) scale(0.994); }
+  .story-section .reveal:nth-child(2), .gallery-item:nth-child(2), .gallery-item:nth-child(5) { transition-delay: 150ms; }
+  .story-section .reveal:nth-child(3), .gallery-item:nth-child(3), .gallery-item:nth-child(6) { transition-delay: 270ms; }
+  .site-shell--ready .swipe-line--up > span { animation-duration: 920ms; animation-delay: 170ms; }
+  .site-shell--ready .swipe-line--down > span { animation-duration: 920ms; animation-delay: 290ms; }
+  .swipe-heading--up h2, .swipe-heading--up .eyebrow, .swipe-heading--up p { animation-duration: 900ms; animation-delay: 130ms; }
+  .swipe-heading--down h2, .swipe-heading--down .eyebrow, .swipe-heading--down p { animation-duration: 900ms; animation-delay: 180ms; }
   .cover__content { padding: 23px 20px 25px; }
   .cover__topline { font-size: 8px; }
   .cover__center { margin-top: -9vh; }

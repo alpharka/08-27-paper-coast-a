@@ -1,5 +1,12 @@
 # Animation Revision Todo
 
+## Mobile motion timing refinement
+
+- [x] Slow mobile reveal and transition durations slightly without making scrolling feel heavy.
+- [x] Tune mobile stagger timing while keeping text visible and content stable.
+- [x] Preserve desktop timings and `prefers-reduced-motion` behavior.
+- [x] Run checks, capture mobile/desktop previews, and save a new checkpoint.
+
 ## Scroll transition refinement
 
 - [x] Smooth section-to-section scroll rhythm and reveal timing.
