@@ -24,14 +24,16 @@ export function SectionHeading({
   title,
   description,
   align = "left",
+  direction = "up",
 }: {
   eyebrow: string;
   title: ReactNode;
   description?: string;
   align?: "left" | "right";
+  direction?: "up" | "down";
 }) {
   return (
-    <div className={`section-heading reveal ${align === "right" ? "section-heading--right" : ""}`}>
+    <div className={`section-heading reveal swipe-heading swipe-heading--${direction} ${align === "right" ? "section-heading--right" : ""}`}>
       <div className="eyebrow"><span className="eyebrow-dot" />{eyebrow}</div>
       <h2>{title}</h2>
       {description ? <p>{description}</p> : null}

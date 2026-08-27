@@ -167,6 +167,7 @@ function EventBlock({ kind, time, venue, address }: { kind: string; time: string
 
 export default function Home() {
   const guestName = useMemo(getGuestName, []);
+  const [isLoading, setIsLoading] = useState(true);
   const [coverOpen, setCoverOpen] = useState(false);
   const [contentReady, setContentReady] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
@@ -181,13 +182,18 @@ export default function Home() {
   const music = useAmbientMusic();
 
   useEffect(() => {
-    if (!coverOpen) {
+    const timer = window.setTimeout(() => setIsLoading(false), 1_650);
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (!coverOpen || isLoading) {
       document.body.classList.add("cover-locked");
       return () => document.body.classList.remove("cover-locked");
     }
     const timeout = window.setTimeout(() => setContentReady(true), 760);
     return () => window.clearTimeout(timeout);
-  }, [coverOpen]);
+  }, [coverOpen, isLoading]);
 
   useEffect(() => {
     if (lightboxIndex === null) return;
@@ -243,8 +249,13 @@ export default function Home() {
   };
 
   return (
-    <div className={`site-shell ${contentReady ? "site-shell--ready" : ""}`}>
-      <div className={`cover ${coverOpen ? "cover--open" : ""}`} aria-hidden={coverOpen}>
+    <div className={`site-shell ${contentReady ? "site-shell--ready" : ""} ${isLoading ? "site-shell--loading" : ""}`}>
+      <div className={`preloader ${isLoading ? "" : "preloader--done"}`} aria-live="polite" aria-busy={isLoading}>
+        <div className="preloader__topline"><span>paper coast</span><span>est. 2026</span></div>
+        <div className="preloader__center"><WaveEmblem className="preloader__emblem" /><span className="preloader__wordmark">N <i>&</i> R</span><span className="preloader__caption">membuka halaman cerita</span></div>
+        <div className="preloader__bottom"><span>one chapter</span><span className="preloader__line"><i /></span><span>loading</span></div>
+      </div>
+      <div className={`cover ${coverOpen ? "cover--open" : ""} ${isLoading ? "cover--preparing" : ""}`} aria-hidden={coverOpen}>
         <div className="cover__image" />
         <div className="cover__grain" />
         <div className="cover__content">
@@ -286,7 +297,7 @@ export default function Home() {
           <div className="hero-section__copy reveal">
             <Stamp>save the date</Stamp>
             <p className="eyebrow"><span className="eyebrow-dot" />Jakarta · Indonesia</p>
-            <h1><span>Two roads.</span><span>One <i>home.</i></span></h1>
+            <h1><span className="swipe-line swipe-line--up"><span>Two roads.</span></span><span className="swipe-line swipe-line--down"><span>One <i>home.</i></span></span></h1>
             <p className="hero-section__description">Kami menemukan bahwa rumah bukan selalu sebuah tempat. Kadang ia adalah seseorang yang membuat setiap perjalanan terasa layak ditempuh.</p>
             <button className="text-link" type="button" onClick={() => scrollToId("#cerita")}><span>Ikuti ceritanya</span><ArrowDown size={16} /></button>
           </div>
@@ -296,7 +307,7 @@ export default function Home() {
         <section id="cerita" className="story-section section-paper">
           <div className="section-index">01 <span>—</span> our story</div>
           <div className="story-section__inner">
-            <SectionHeading eyebrow="Catatan perjalanan" title={<>Dari satu <i>kebetulan</i><br />menjadi rumah.</>} description="Kami tidak merencanakan pertemuan pertama itu. Tetapi sejak hari itu, kami terus memilih untuk berjalan ke arah yang sama." />
+            <SectionHeading direction="down" eyebrow="Catatan perjalanan" title={<>Dari satu <i>kebetulan</i><br />menjadi rumah.</>} description="Kami tidak merencanakan pertemuan pertama itu. Tetapi sejak hari itu, kami terus memilih untuk berjalan ke arah yang sama." />
             <div className="story-section__body">
               <Reveal className="story-section__note"><span className="quote-mark">“</span><p>Di antara jalan pulang, kopi sore, dan pesan-pesan yang tak pernah benar-benar selesai, kami belajar bahwa cinta tumbuh dari hal-hal sederhana yang terus dipilih.</p><small>— Nadia, tentang Raka</small></Reveal>
               <Reveal className="story-section__image-wrap"><div className="story-section__image" /><span className="image-caption">01 / a quiet beginning</span></Reveal>
@@ -344,7 +355,7 @@ export default function Home() {
           <div className="section-index">04 <span>—</span> leave a note</div>
           <div className="rsvp-section__grid">
             <div className="rsvp-section__intro">
-              <SectionHeading eyebrow="Konfirmasi kehadiran" title={<>Satu pesan kecil<br />dari <i>Anda.</i></>} description="Titipkan kabar kecil untuk kami. Jawaban dan pesan Anda tersimpan di perangkat ini, seperti catatan yang diselipkan di halaman perjalanan." />
+              <SectionHeading direction="down" eyebrow="Konfirmasi kehadiran" title={<>Satu pesan kecil<br />dari <i>Anda.</i></>} description="Titipkan kabar kecil untuk kami. Jawaban dan pesan Anda tersimpan di perangkat ini, seperti catatan yang diselipkan di halaman perjalanan." />
               <div className="rsvp-section__postmark"><WaveEmblem /><span>with love<br />N + R</span></div>
             </div>
             <div className="rsvp-form-wrap">

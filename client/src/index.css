@@ -37,6 +37,23 @@ button, a, input, textarea { -webkit-tap-highlight-color: transparent; }
 button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid var(--rust); outline-offset: 4px; }
 
 .site-shell { overflow: clip; background: var(--paper); }
+.site-shell--loading .cover { pointer-events: none; }
+.preloader { position: fixed; z-index: 80; inset: 0; display: flex; flex-direction: column; justify-content: space-between; padding: clamp(25px, 5vw, 72px) clamp(22px, 6vw, 86px); color: var(--paper-soft); background: var(--sea-ink); opacity: 1; transition: opacity 520ms var(--ease-out), visibility 0s linear 520ms; }
+.preloader--done { visibility: hidden; opacity: 0; }
+.preloader::before { position: absolute; inset: 0; background: repeating-linear-gradient(103deg, transparent 0, transparent 13px, rgba(245,240,232,0.032) 14px, transparent 15px); content: ""; pointer-events: none; }
+.preloader__topline, .preloader__bottom { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; color: #b7cbc7; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; }
+.preloader__center { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; margin-top: -3vh; text-align: center; }
+.preloader__emblem { width: 86px; height: 86px; margin-bottom: 22px; color: #e3b194; animation: preloader-emblem 1600ms var(--ease-out) both; }
+.preloader__wordmark { color: var(--paper-soft); font-family: "Cormorant Garamond", serif; font-size: clamp(64px, 9vw, 115px); font-weight: 500; letter-spacing: -0.08em; line-height: 0.7; animation: preloader-wordmark 900ms var(--ease-out) 160ms both; }
+.preloader__wordmark i { color: #e3b194; font-size: 0.72em; font-style: italic; }
+.preloader__caption { margin-top: 24px; color: #b7cbc7; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; animation: preloader-caption 700ms var(--ease-out) 330ms both; }
+.preloader__line { position: relative; width: clamp(100px, 19vw, 220px); height: 1px; margin: 0 17px; overflow: hidden; background: rgba(245,240,232,0.22); }
+.preloader__line i { position: absolute; inset: 0 auto 0 0; display: block; width: 38%; background: #e3b194; animation: preloader-progress 1400ms var(--ease-in-out) 80ms both; }
+@keyframes preloader-emblem { from { opacity: 0; transform: translateY(15px) rotate(-15deg); } to { opacity: 1; transform: translateY(0) rotate(0deg); } }
+@keyframes preloader-wordmark { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes preloader-caption { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes preloader-progress { from { transform: translateX(-130%); } to { transform: translateX(285%); } }
+
 .site-shell--ready main { opacity: 1; }
 .site-shell main { opacity: 0.96; transition: opacity 500ms ease; }
 
@@ -47,6 +64,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .cover__content { position: relative; display: flex; flex-direction: column; justify-content: space-between; height: 100%; max-width: 1380px; margin: 0 auto; padding: clamp(24px, 5vw, 68px) clamp(22px, 6vw, 96px); }
 .cover__topline, .cover__bottom { display: flex; align-items: center; justify-content: space-between; gap: 18px; font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; }
 .cover__center { display: flex; flex-direction: column; align-items: center; text-align: center; margin-top: -2vh; }
+.cover--preparing { visibility: hidden; }
+
 .cover__emblem { width: 88px; height: 88px; margin-bottom: 28px; color: #f1e5d7; }
 .cover__kicker { margin: 0 0 14px; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; }
 .cover h1 { display: flex; flex-direction: column; gap: 0; margin: 0; color: var(--white); font-family: "Cormorant Garamond", serif; font-size: clamp(64px, 10vw, 150px); font-weight: 500; letter-spacing: -0.06em; line-height: 0.76; }
@@ -92,6 +111,15 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .eyebrow-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--rust); }
 .hero-section h1 { margin: 0; color: var(--sea-ink); font-family: "Cormorant Garamond", serif; font-size: clamp(65px, 7.2vw, 114px); font-weight: 500; letter-spacing: -0.065em; line-height: 0.77; }
 .hero-section h1 span { display: block; }
+.swipe-line { display: block; overflow: hidden; }
+.swipe-line > span { display: block; }
+.site-shell--ready .swipe-line--up > span { animation: swipe-up 780ms var(--ease-out) 120ms both; }
+.site-shell--ready .swipe-line--down > span { animation: swipe-down 780ms var(--ease-out) 220ms both; }
+.swipe-heading--up h2, .swipe-heading--up .eyebrow, .swipe-heading--up p { animation: swipe-up 780ms var(--ease-out) 90ms both; }
+.swipe-heading--down h2, .swipe-heading--down .eyebrow, .swipe-heading--down p { animation: swipe-down 780ms var(--ease-out) 100ms both; }
+@keyframes swipe-up { from { opacity: 0; transform: translateY(105%); } to { opacity: 1; transform: translateY(0); } }
+@keyframes swipe-down { from { opacity: 0; transform: translateY(-105%); } to { opacity: 1; transform: translateY(0); } }
+
 .hero-section h1 span:nth-child(2) { margin-left: 0.38em; }
 .hero-section h1 i, .section-heading i { color: var(--rust); font-style: italic; font-weight: 400; }
 .hero-section__description { max-width: 335px; margin: 30px 0 27px 0.44em; color: var(--ink-muted); font-size: 12px; line-height: 1.7; }
@@ -286,7 +314,9 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
-  .reveal { opacity: 1; transform: none; }
+  .reveal, .swipe-line > span, .swipe-heading--up h2, .swipe-heading--up .eyebrow, .swipe-heading--up p, .swipe-heading--down h2, .swipe-heading--down .eyebrow, .swipe-heading--down p { opacity: 1; transform: none; }
+  .preloader { visibility: hidden; opacity: 0; }
+  .cover--preparing { visibility: visible; }
 }
 
 @media (max-width: 820px) {
