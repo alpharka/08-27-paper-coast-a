@@ -51,17 +51,24 @@ export function Reveal({ children, className = "", direction = "up" }: { childre
       node.classList.add("is-visible");
       return;
     }
-    const observer = new IntersectionObserver(
+    node.classList.add("reveal-ready");
+    let observer: IntersectionObserver | null = null;
+    const reveal = () => {
+      node.classList.add("is-visible");
+      observer?.unobserve(node);
+    };
+    observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          node.classList.add("is-visible");
-          observer.unobserve(node);
-        }
+        if (entry.isIntersecting) reveal();
       },
-      { threshold: 0.12 },
+      { threshold: 0.08 },
     );
     observer.observe(node);
-    return () => observer.disconnect();
+    const fallbackTimer = window.setTimeout(reveal, 1_450);
+    return () => {
+      observer?.disconnect();
+      window.clearTimeout(fallbackTimer);
+    };
   }, []);
 
   return <div ref={ref} className={`reveal reveal--${direction} ${className}`}>{children}</div>;
