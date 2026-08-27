@@ -41,7 +41,7 @@ export function SectionHeading({
   );
 }
 
-export function Reveal({ children, className = "" }: { children: ReactNode; className?: string }) {
+export function Reveal({ children, className = "", direction = "up" }: { children: ReactNode; className?: string; direction?: "up" | "down" }) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -64,7 +64,7 @@ export function Reveal({ children, className = "" }: { children: ReactNode; clas
     return () => observer.disconnect();
   }, []);
 
-  return <div ref={ref} className={`reveal ${className}`}>{children}</div>;
+  return <div ref={ref} className={`reveal reveal--${direction} ${className}`}>{children}</div>;
 }
 
 export function Stamp({ children }: { children: ReactNode }) {

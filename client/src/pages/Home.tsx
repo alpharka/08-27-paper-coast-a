@@ -294,13 +294,13 @@ export default function Home() {
             <div className="hero-section__portrait" />
             <span className="photo-label">N + R / 2026</span>
           </div>
-          <div className="hero-section__copy reveal">
+          <Reveal direction="down" className="hero-section__copy">
             <Stamp>save the date</Stamp>
             <p className="eyebrow"><span className="eyebrow-dot" />Jakarta · Indonesia</p>
             <h1><span className="swipe-line swipe-line--up"><span>Two roads.</span></span><span className="swipe-line swipe-line--down"><span>One <i>home.</i></span></span></h1>
             <p className="hero-section__description">Kami menemukan bahwa rumah bukan selalu sebuah tempat. Kadang ia adalah seseorang yang membuat setiap perjalanan terasa layak ditempuh.</p>
             <button className="text-link" type="button" onClick={() => scrollToId("#cerita")}><span>Ikuti ceritanya</span><ArrowDown size={16} /></button>
-          </div>
+          </Reveal>
           <div className="hero-section__side-note">A note from<br />Nadia & Raka</div>
         </section>
 
@@ -308,26 +308,26 @@ export default function Home() {
           <div className="section-index">01 <span>—</span> our story</div>
           <div className="story-section__inner">
             <SectionHeading direction="down" eyebrow="Catatan perjalanan" title={<>Dari satu <i>kebetulan</i><br />menjadi rumah.</>} description="Kami tidak merencanakan pertemuan pertama itu. Tetapi sejak hari itu, kami terus memilih untuk berjalan ke arah yang sama." />
-            <div className="story-section__body">
+            <Reveal direction="up" className="story-section__body">
               <Reveal className="story-section__note"><span className="quote-mark">“</span><p>Di antara jalan pulang, kopi sore, dan pesan-pesan yang tak pernah benar-benar selesai, kami belajar bahwa cinta tumbuh dari hal-hal sederhana yang terus dipilih.</p><small>— Nadia, tentang Raka</small></Reveal>
-              <Reveal className="story-section__image-wrap"><div className="story-section__image" /><span className="image-caption">01 / a quiet beginning</span></Reveal>
-            </div>
+              <Reveal direction="down" className="story-section__image-wrap"><div className="story-section__image" /><span className="image-caption">01 / a quiet beginning</span></Reveal>
+            </Reveal>
             <div className="story-section__footer"><SocialRule /><p>Semoga hari ini menjadi halaman yang ingin kita baca ulang.</p></div>
           </div>
         </section>
 
         <section id="acara" className="event-section">
           <div className="event-section__mapline" aria-hidden="true"><svg viewBox="0 0 400 400"><path d="M0 314C64 272 84 320 140 276C196 232 224 260 280 206C334 154 358 182 400 124" /><path d="M0 352C64 310 84 358 140 314C196 270 224 298 280 244C334 192 358 220 400 162" /></svg></div>
-          <div className="event-section__intro">
+          <Reveal direction="down" className="event-section__intro">
             <div className="section-index">02 <span>—</span> mark the day</div>
             <SectionHeading eyebrow="Hari yang kami nantikan" title={<>Mari bertemu<br /><i>di sana.</i></>} description="Kami akan senang sekali bila Anda hadir, mengisi sore dengan doa baik, dan ikut merayakan langkah baru kami." />
             <a className="outline-link" href={weddingConfig.event.mapsUrl} target="_blank" rel="noreferrer"><MapPin size={15} /> Lihat lokasi di peta <ExternalLink size={14} /></a>
-          </div>
-          <div className="event-section__details">
+          </Reveal>
+          <Reveal direction="up" className="event-section__details">
             <div className="event-date-card reveal"><span className="event-date-card__month">NOVEMBER</span><strong>21</strong><span className="event-date-card__weekday">SABTU · 2026</span></div>
             <div className="event-timeline"><EventBlock {...weddingConfig.event.ceremony} /><div className="event-timeline__line" /><EventBlock {...weddingConfig.event.reception} /></div>
             <a className="calendar-link" href={createCalendarUrl()} target="_blank" rel="noreferrer"><CalendarDays size={17} /> Simpan tanggal ke Google Calendar <ArrowUpRight size={16} /></a>
-          </div>
+          </Reveal>
           <div className="countdown-block reveal">
             <div className="eyebrow"><span className="eyebrow-dot" />Counting the days</div>
             <div className="countdown-grid">
@@ -338,27 +338,27 @@ export default function Home() {
 
         <section id="galeri" className="gallery-section section-paper">
           <div className="section-index">03 <span>—</span> in frames</div>
-          <div className="gallery-section__header">
+          <Reveal direction="down" className="gallery-section__header">
             <SectionHeading eyebrow="Potongan hari-hari kami" title={<>The places<br /><i>we keep.</i></>} description="Beberapa momen kecil yang kami simpan sepanjang perjalanan. Klik untuk melihat lebih dekat." />
             <div className="gallery-count"><span>06</span><small>frames<br />of us</small></div>
-          </div>
-          <div className="masonry-grid">
+          </Reveal>
+          <Reveal direction="up" className="masonry-grid">
             {galleryItems.map((item, index) => <button key={item.src} data-caption={item.caption} className={`gallery-item gallery-item--${item.ratio} reveal`} type="button" onClick={() => setLightboxIndex(index)} aria-label={`Lihat foto ${item.caption}`}>
               <img src={item.src} alt={item.alt} loading="eager" onError={(event) => { event.currentTarget.style.display = "none"; event.currentTarget.parentElement?.classList.add("gallery-item--paper"); }} />
               <span className="gallery-item__veil"><span>{item.caption}</span><span className="gallery-item__zoom">+</span></span>
             </button>)}
-          </div>
+          </Reveal>
         </section>
 
         <section id="rsvp" className="rsvp-section">
           <div className="rsvp-section__coordinate" aria-hidden="true">06°14'32.8\"S / 106°48'10.2\"E · POSTMARK 04</div>
           <div className="section-index">04 <span>—</span> leave a note</div>
           <div className="rsvp-section__grid">
-            <div className="rsvp-section__intro">
+            <Reveal direction="down" className="rsvp-section__intro">
               <SectionHeading direction="down" eyebrow="Konfirmasi kehadiran" title={<>Satu pesan kecil<br />dari <i>Anda.</i></>} description="Titipkan kabar kecil untuk kami. Jawaban dan pesan Anda tersimpan di perangkat ini, seperti catatan yang diselipkan di halaman perjalanan." />
               <div className="rsvp-section__postmark"><WaveEmblem /><span>with love<br />N + R</span></div>
-            </div>
-            <div className="rsvp-form-wrap">
+            </Reveal>
+            <Reveal direction="up" className="rsvp-form-wrap">
               <form className="rsvp-form" onSubmit={submitRsvp} noValidate>
                 <label className="field-label" htmlFor="guest-name">Nama lengkap</label>
                 <input id="guest-name" value={rsvpName} onChange={(event) => setRsvpName(event.target.value)} placeholder="Tulis nama Anda" autoComplete="name" />
@@ -378,22 +378,22 @@ export default function Home() {
                 <div className="guestbook__header"><span>Surat yang sampai</span><small>{guestbook.length ? `${guestbook.length} pesan` : "Belum ada pesan"}</small></div>
                 {guestbook.length === 0 ? <div className="guestbook__empty"><Mail size={17} /><p>Pesan baik Anda akan kami baca di sini setelah dikirim.</p></div> : <div className="guestbook__entries">{guestbook.map((entry) => <article key={entry.id} className="guestbook__entry"><div><strong>{entry.name}</strong><span>{entry.attendance}</span></div><p>{entry.message}</p></article>)}</div>}
               </div>
-            </div>
+            </Reveal>
           </div>
         </section>
 
         <section id="tanda-kasih" className="gift-section section-paper">
           <div className="gift-section__contour" aria-hidden="true"><span /><span /><span /></div>
           <div className="section-index">05 <span>—</span> a little gesture</div>
-          <div className="gift-section__header"><SectionHeading eyebrow="Tanda kasih" title={<>Jika ingin meninggalkan<br /><i>hangat</i> untuk kami.</>} description="Doa dan kehadiran Anda adalah hadiah yang paling berarti. Bila ingin menitipkan hangat untuk perjalanan baru kami, detailnya ada di bawah ini." /></div>
-          <div className="gift-section__grid">
+          <Reveal direction="down" className="gift-section__header"><SectionHeading eyebrow="Tanda kasih" title={<>Jika ingin meninggalkan<br /><i>hangat</i> untuk kami.</>} description="Doa dan kehadiran Anda adalah hadiah yang paling berarti. Bila ingin menitipkan hangat untuk perjalanan baru kami, detailnya ada di bawah ini." /></Reveal>
+          <Reveal direction="up" className="gift-section__grid">
             <div className="qr-card reveal"><Stamp>postal note / 05</Stamp><div className="qr-card__top"><span>send with care</span><Sparkles size={16} /></div><img src={`https://quickchart.io/qr?text=${encodeURIComponent(weddingConfig.payment.qrPayload)}&size=240&margin=1`} alt="QR code untuk tanda kasih melalui DANA" /><span className="qr-card__caption">{weddingConfig.payment.isExample ? "Data contoh — ganti sebelum undangan dibagikan" : "Terima kasih atas tanda kasih Anda"}</span></div>
             <div className="payment-details reveal">
               <div className="payment-details__item"><span className="payment-details__label">E-wallet · {weddingConfig.payment.ewalletProvider}</span><strong>{weddingConfig.payment.ewalletNumber}</strong><p>a.n. {weddingConfig.payment.accountName}</p><CopyButton value={weddingConfig.payment.ewalletNumber} label="Salin nomor e-wallet" /></div>
               <div className="payment-details__item"><span className="payment-details__label">Transfer bank · {weddingConfig.payment.bank}</span><strong>{weddingConfig.payment.accountNumber}</strong><p>a.n. {weddingConfig.payment.accountName}</p><CopyButton value={weddingConfig.payment.accountNumber} label="Salin nomor rekening" /></div>
               <a className="payment-link" href={weddingConfig.payment.paymentLink} target="_blank" rel="noreferrer"><Volume2 size={15} /> Buka link pembayaran <ArrowUpRight size={15} /></a>
             </div>
-          </div>
+          </Reveal>
         </section>
       </main>
 

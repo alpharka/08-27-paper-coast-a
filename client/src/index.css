@@ -308,7 +308,9 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 @keyframes lightbox-in { from { opacity: 0; } to { opacity: 1; } }
 
 .reveal { opacity: 0; transform: translateY(23px) scale(0.99); transition: opacity 700ms var(--ease-out), transform 700ms var(--ease-out); }
-.reveal.is-visible, .site-shell--ready .cover + .site-header + main .reveal { opacity: 1; transform: translateY(0) scale(1); }
+.reveal--up { transform: translateY(28px) scale(0.99); }
+.reveal--down { transform: translateY(-28px) scale(0.99); }
+.reveal.is-visible { opacity: 1; transform: translateY(0) scale(1); }
 .story-section .reveal:nth-child(2), .gallery-item:nth-child(2), .gallery-item:nth-child(5) { transition-delay: 90ms; }
 .story-section .reveal:nth-child(3), .gallery-item:nth-child(3), .gallery-item:nth-child(6) { transition-delay: 160ms; }
 
