@@ -28,6 +28,8 @@
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; background: var(--paper); }
+main > section { scroll-margin-top: 92px; }
+
 body { margin: 0; min-width: 320px; background: var(--paper); color: var(--charcoal); }
 body.cover-locked, body.lightbox-locked { overflow: hidden; }
 button, input, textarea { font: inherit; }
@@ -113,8 +115,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .hero-section h1 span { display: block; }
 .swipe-line { display: block; overflow: hidden; }
 .swipe-line > span { display: block; }
-.site-shell--ready .swipe-line--up > span { animation: swipe-up 780ms var(--ease-out) 120ms both; }
-.site-shell--ready .swipe-line--down > span { animation: swipe-down 780ms var(--ease-out) 220ms both; }
+.site-shell--ready .swipe-line--up > span { animation: swipe-up 820ms var(--ease-out) 140ms both; }
+.site-shell--ready .swipe-line--down > span { animation: swipe-down 820ms var(--ease-out) 250ms both; }
 .swipe-heading--up h2, .swipe-heading--up .eyebrow, .swipe-heading--up p { animation: swipe-up 780ms var(--ease-out) 90ms both; }
 .swipe-heading--down h2, .swipe-heading--down .eyebrow, .swipe-heading--down p { animation: swipe-down 780ms var(--ease-out) 100ms both; }
 .swipe-heading--up h2, .swipe-heading--up .eyebrow, .swipe-heading--up p, .swipe-heading--down h2, .swipe-heading--down .eyebrow, .swipe-heading--down p { animation-fill-mode: none; }
@@ -308,13 +310,15 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .lightbox__arrow--right { right: 28px; }
 @keyframes lightbox-in { from { opacity: 0; } to { opacity: 1; } }
 
-.reveal { opacity: 1; transform: translateY(0) scale(1); transition: opacity 700ms var(--ease-out), transform 700ms var(--ease-out); }
+.reveal { opacity: 1; transform: translate3d(0, 0, 0) scale(1); transition: opacity 880ms var(--ease-out), transform 880ms var(--ease-out); will-change: opacity, transform; }
 .reveal.reveal-ready { opacity: 0; }
-.reveal.reveal-ready.reveal--up { transform: translateY(28px) scale(0.99); }
-.reveal.reveal-ready.reveal--down { transform: translateY(-28px) scale(0.99); }
-.reveal.reveal-ready.is-visible { opacity: 1; transform: translateY(0) scale(1); }
-.story-section .reveal:nth-child(2), .gallery-item:nth-child(2), .gallery-item:nth-child(5) { transition-delay: 90ms; }
-.story-section .reveal:nth-child(3), .gallery-item:nth-child(3), .gallery-item:nth-child(6) { transition-delay: 160ms; }
+.reveal.reveal-ready.reveal--up { transform: translate3d(0, 24px, 0) scale(0.992); }
+.reveal.reveal-ready.reveal--down { transform: translate3d(0, -24px, 0) scale(0.992); }
+.reveal.reveal-ready.is-visible { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+.story-section .reveal:nth-child(2), .gallery-item:nth-child(2), .gallery-item:nth-child(5) { transition-delay: 120ms; }
+.story-section .reveal:nth-child(3), .gallery-item:nth-child(3), .gallery-item:nth-child(6) { transition-delay: 220ms; }
+.section-heading, .event-section__intro, .event-section__details, .gallery-section__header, .masonry-grid, .rsvp-section__intro, .rsvp-form-wrap, .gift-section__header, .gift-section__grid { backface-visibility: hidden; }
+
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
@@ -338,6 +342,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 @media (max-width: 640px) {
+  main > section { scroll-margin-top: 68px; }
+  .reveal { transition-duration: 760ms; }
   .cover__content { padding: 23px 20px 25px; }
   .cover__topline { font-size: 8px; }
   .cover__center { margin-top: -9vh; }

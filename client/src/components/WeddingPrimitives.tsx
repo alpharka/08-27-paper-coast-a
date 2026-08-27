@@ -61,10 +61,10 @@ export function Reveal({ children, className = "", direction = "up" }: { childre
       ([entry]) => {
         if (entry.isIntersecting) reveal();
       },
-      { threshold: 0.08 },
+      { rootMargin: "0px 0px -10% 0px", threshold: 0.04 },
     );
     observer.observe(node);
-    const fallbackTimer = window.setTimeout(reveal, 1_450);
+    const fallbackTimer = window.setTimeout(reveal, 1_800);
     return () => {
       observer?.disconnect();
       window.clearTimeout(fallbackTimer);

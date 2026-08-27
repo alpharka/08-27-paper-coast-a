@@ -1,5 +1,12 @@
 # Animation Revision Todo
 
+## Scroll transition refinement
+
+- [x] Smooth section-to-section scroll rhythm and reveal timing.
+- [x] Reduce abrupt transforms while preserving text visibility.
+- [x] Keep navigation, mobile layout, and reduced-motion behavior stable.
+- [x] Run checks, capture desktop/mobile previews, and save a new checkpoint.
+
 ## Text visibility regression fix
 
 - [x] Identify hidden-text selectors and reveal wrappers causing the regression.
